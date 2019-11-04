@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Enzyme, { shallow } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
