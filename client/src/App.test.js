@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import { storeFactory } from '../test/testUtils';
 import App from "./App";
+import { _App } from './App'
 
 const setup = ( state = {}) =>{
   const store = storeFactory(state);
@@ -34,4 +35,11 @@ describe('redux properties',()=>{
     const getSecretWordProp = wrapper.instance().props.getSecretWord;
     expect(getSecretWordProp).toBeInstanceOf(Function);
   });
+  test('`getSecretWord` is called when App mounts',()=>{
+    const getSecretWordMock = jest.fn();
+    const wrapper = shallow(< _App getSecretWord={getSecretWordMock}/>);
+    wrapper.instance().componentDidMount()
+    const getSecretWordCalledCount = getSecretWordMock.mock.calls.length
+    expect(getSecretWordCalledCount).toBe(1)
+  })
 })
